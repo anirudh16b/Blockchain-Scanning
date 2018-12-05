@@ -1,0 +1,7 @@
+{
+    "connectionLimit": 10,
+    "host"     : "localhost",
+    "user"     : "root",
+    "password" : "Password@123",
+    "database" : "contractabi"
+}

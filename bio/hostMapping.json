@@ -1,0 +1,3 @@
+{ "rinkeby": "https://rinkeby.infura.io",
+  "testrpc": "http://localhost:8545"
+}

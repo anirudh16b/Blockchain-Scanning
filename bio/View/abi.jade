@@ -1,0 +1,25 @@
+<html>
+<head>
+<title> Upload Contract ABI </title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<form action="/submit" method="POST">
+<fieldset>
+<label for="contract_name">Contract Name: </label>
+<input type="text" id="contract_name" name="contract_name" />
+<br/>
+<label for="contract_abi">ABI: </label>
+<input type="json" id="contract_abi" name="contract_abi"  />
+<br/>
+<label for="contract_address">Contract Address: </label>
+<textarea id="contract_address" name="contract_address"></textarea>
+<br/>
+<label for="contract_txn">Contract Txn: </label>
+<textarea id="contract_txn" name="contract_txn"></textarea>
+<br/>
+<input type="submit" value="Upload ABI" />
+</fieldset>
+</form>
+</body>
+</html>

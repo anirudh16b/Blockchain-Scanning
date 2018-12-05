@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <h1>HRIT Employee</h1>
+
+        <h2 id="employee"></h2>
+
+        <label for="name" class="col-lg-2 control-label">Employee Name</label>
+        <input id="name" type="text">
+
+        <label for="email" class="col-lg-2 control-label">Email</label>
+        <input id="email" type="text">
+
+        <button id="buttonAdd">Add</button>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>-->
+    <script>
+
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+        }
+
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+        
+        const abi = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "emailID",
+				"type": "bytes16"
+			}
+		],
+		"name": "addEmpDetails",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "createEmployee",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "employeeID",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "empName",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "thisAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "passcode",
+				"type": "bytes32"
+			}
+		],
+		"name": "AddedEmployee",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "EmpAddrs",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "EmpIDs",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "EmpNames",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "EmployeeID",
+				"type": "uint256"
+			}
+		],
+		"name": "getEmployee",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getEmployees",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+        const contractAddress = '0xc334f29adf7c1e655b59509df5c9a19cf582cbae'
+        const HRIT = new web3.eth.contract(abi, contractAddress);//, {gasLimit:'2000000000'}
+
+// Previous code removed for brevity
+
+      /*  HRIT.getEmployee()(function(error, result){
+            if(!error)
+                {
+                    $("#employee").html(result[0]+' email ID is: '+result[1]);
+                    console.log(result);
+                }
+            else
+                console.error(error);
+        });*/
+
+        $("#buttonAdd").click(function() {
+            
+                HRIT.getEmployee(1).call(function(err, res){
+            if(!err)
+            alert(res)                
+            //HRIT.addEmpDetails($("#name").val(), $("#email").val());
+        });
+
+           
+                   
+    </script>
+
+</body>
+</html>
